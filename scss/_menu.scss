@@ -1,0 +1,136 @@
+// Menu button 
+.menu-btn{
+   position: absolute;
+   z-index: 3;
+   right: 35px;
+   top: 35px;
+   cursor: pointer;
+   @include easeOut;
+
+   .btn-line{
+     width: 30px;
+     height: 4px;
+     margin: 0 0 5px 0;
+     background: set-text-color($bg-color);
+     @include easeOut;
+   }
+   //rotate into x with the menu line
+   &.close{
+     transform: rotate(180deg);
+ 
+     .btn-line{
+       //line 1 -rotate
+       &:nth-child(1){
+         transform: rotate(135deg) translate(4px, 4px);
+    }
+       //line 2 -hide
+       &:nth-child(2){
+        opacity: 0;
+   }
+
+       //line 3 =rotate
+       &:nth-child(3){
+        transform: rotate(-140deg) translate(4px, -4px);
+   }
+  }
+    
+   }
+}
+//menu overlay
+.menu{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  
+  visibility: hidden;
+  
+
+  &.show{
+    visibility: visible;
+  }
+  
+  &-nav{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    width: 30%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  &-nav{
+    margin: 0;
+    padding: 0;
+    background: rgba(lighten($bg-color, 8), 0.8);
+    list-style: none;
+    transform: translate3d(100%, 0, 0);
+    @include easeOut;
+    &.show{
+      //show in form the top
+      transform: translate3d(0, 0, 0);
+    }
+  }
+.nav-items {
+  transform: translate3d(600px, 0, 0);
+  @include easeOut;
+
+  &.show {
+    // Slide in from right
+    transform: translate3d(0, 0, 0);
+   }
+   &.current > a{
+    color: $secondary-color;
+  }
+ }
+ .nav-link{
+   display: inline-block;
+   position: relative;
+   font-size: 22px;
+   text-transform: uppercase;
+   font-weight: 600;
+   text-decoration: none;
+   padding: 1rem 0;
+   color: set-text-color($bg-color);
+   @include easeOut;
+   &:hover{
+     
+    color: $secondary-color;
+    @include easeOut;
+     
+    
+   }
+   
+ }
+ .icons{
+  margin-top: 4rem;
+  
+  a{
+      padding: 0.8rem;
+      font-size: 1.5rem;
+      &:hover{
+          color: $secondary-color;
+          @include easeOut();
+          
+      }
+  }
+}
+
+#main-footer{
+  text-align: center;
+  position: absolute;
+  top: 90%;
+  font-size: 0.8rem;
+  padding: 1rem;
+  background: rgba(lighten($bg-color, 8), 0.8);
+  color: set-text-color($bg-color);
+  height: 55px;
+}
+ 
+}
+// Delay each nav item slide by 0.1s
+@for $x from 1 through 4 {
+  .nav-items:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
+}
